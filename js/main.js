@@ -7,7 +7,6 @@ var points = [];
 var lastX = 0;
 var lastY = 0;
 
-
 function init() {
     canvas = document.querySelector('#canvas');
     ctx = canvas.getContext('2d');
@@ -25,19 +24,28 @@ function init() {
 }
 
 function draw(e) {
-    // stop the function if they are not mouse down
     if (!isDrawing) return;
     drawColor();
+
+    var drawStyle = document.querySelector('select').value;
 
     points.push({ x: e.clientX, y: e.clientY });
     for (var i = 0; i < points.length; i++) {
         ctx.beginPath();
 
-        // drawSquares(i);
-        // drawCircles(i);
-        // drawPen(e);
-        drawStars(points[i].x,points[i].y);
-
+        switch (drawStyle) {
+            case 'pen':
+                drawPen(e);
+                break;
+            case 'circle':
+                drawCircles(i);
+                break;
+            case 'star':
+                drawStars(points[i].x,points[i].y);
+                break;
+            default:
+                break;
+        }
         ctx.stroke();
     }
 }
@@ -84,15 +92,3 @@ function drawColor() {
     let color = document.querySelector('input').value;
     ctx.strokeStyle = color;
 }
-
-
-// function drawSquares(i) {
-//     ctx.save();
-//     ctx.lineWidth = 10;
-//     ctx.lineJoin = ctx.lineCap = 'round';
-//     ctx.moveTo(points[0].x, points[0].y);
-//     for (var j = 1; j < points.length; j++) {        
-//         ctx.rect(points[i].x, points[i].y, points[j].x, points[j].y);
-//     }
-//     ctx.restore();
-// }
