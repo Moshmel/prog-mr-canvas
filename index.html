@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,28 @@
     <link rel="stylesheet" href="css/main.css">
     <title>Document</title>
 </head>
-<body onload="init()">
-    <header>Hello</header>
 
-    <canvas id="canvas" width="500" height="400">text</canvas>
-    <input type="color" id="txt-color"/>
-    <select>
-        <option value="pen" selected>pen</option>
-        <option value="circle">circle</option>
-        <option value="star">star</option>
-    </select>
+<body onload="init()">
+    <header class="flex">
+        <input type="color" id="txt-color" />
+        <select>
+            <option value="pen" selected>pen</option>
+            <option value="circle">circle</option>
+            <option value="star">star</option>
+        </select>
+
+        <div class="share-container"></div>
+        <input type="file" name="image" onchange="onFileInputChange(event)" />
+        <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
+            Download as png
+        </a>
+    </header>
+    
+    <div class="canvas-container">
+        <canvas id="canvas" width="500" height="400">text</canvas>
+    </div>
+
     <script src="js/main.js"></script>
 </body>
+
 </html>
